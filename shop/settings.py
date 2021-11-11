@@ -26,7 +26,7 @@ SECRET_KEY = 'kztl!hewss%%wql#5vv!=8cnush#sz8%*^b6$7vs*_yz(di51r'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1"]
+ALLOWED_HOSTS = ["127.0.0.1","saldaeshop.pythonanywhere.com"]
 
 
 # Application definition
