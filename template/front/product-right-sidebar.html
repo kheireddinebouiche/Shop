@@ -1,0 +1,967 @@
+{% extends 'front/base.html' %}
+{% load static %}
+
+{% block content %}
+
+		<main class="main single-product">
+			<div class="page-content mb-10 pb-6">
+				<div class="container">
+					<div class="row mt-8 gutter-lg">
+						<aside class="col-lg-3 right-sidebar sidebar-fixed sticky-sidebar-wrapper">
+							<div class="sidebar-overlay">
+								<a class="sidebar-close" href="#"><i class="d-icon-times"></i></a>
+							</div>
+							<a href="#" class="sidebar-toggle"><i class="fas fa-chevron-left"></i></a>
+							<div class="sidebar-content">
+								<div class="sticky-sidebar">
+									<!--CONDITIONS-->
+									<div class="service-list mb-4">
+
+										<!--PAIEMENT-->
+										<div class="icon-box icon-box-side icon-box3">
+											<span class="icon-box-icon">
+												<img src="{{produit.condition_paiement.image.url}}" style="width: 35px; height: 35px; margin-left: 2px;">
+											</span>
+											<div class="icon-box-content">
+												<h4 class="icon-box-title text-capitalize">{{produit.condition_paiement.paiement}}</h4>
+												<p>{{produit.condition_paiement.autres}}</p>
+											</div>
+										</div>
+										<!--FIN PAIEMENT-->
+
+										<!--LIVRAISON-->
+										<div class="icon-box icon-box-side icon-box1">
+											<span class="icon-box-icon">
+												<img src="{{produit.condition_livraison.image.url}}" style="width: 35px; height: 35px; margin-left: 2px;">
+											</span>
+											<div class="icon-box-content">
+												<h4 class="icon-box-title text-capitalize">{{produit.condition_livraison.livraison}}</h4>
+												<p>{{produit.condition_livraison.autres}}</p>
+											</div>
+										</div>
+										<!--FIN LIVRAISON-->
+
+										<!--RETOURS-->
+										<div class="icon-box icon-box-side icon-box2">
+											<span class="icon-box-icon">
+												<img src="{{produit.condition_retour.image.url}}" style="width: 35px; height: 35px; margin-left: 2px;">					
+											</span>
+											<div class="icon-box-content">
+												<h4 class="icon-box-title text-capitalize">{{produit.condition_retour.retour}}</h4>
+												<p>{{produit.condition_retour.autres}}</p>
+											</div>
+										</div>
+										<!--RETOURS-->
+
+
+									</div>
+									<!--FIN CONDITIONS-->
+
+									<!--ANNONCE PRODUIT-->
+									<div class="banner banner-fixed mb-7">
+										<figure>
+											<img src="{% static 'front/images/product/product-banner.jpg' %}" alt="banner" width="280"
+												height="320">
+										</figure>
+										<div class="banner-content text-center">
+											<h5 class="banner-subtitle ls-l text-uppercase mb-0">Gucci Shoes</h5>
+											<h3 class="banner-title ls-s text-uppercase mb-0">New Trend 2021</h3>
+										</div>
+									</div>
+									<!--FIN ANNONCE PRODUIT-->
+									
+									<!--CELA POURAIT VOUS INTERESSER-->
+									<div class="widget widget-products">
+										<h4 class="widget-title mb-3 lh-1 border-no text-capitalize ">Cela pourait vous intéresser
+										</h4>
+										<div class="widget-body">
+											<div class="owl-carousel owl-nav-top" data-owl-options="{
+												'items': 1,
+												'loop': true,
+												'nav': true,
+												'dots': false,
+												'margin': 20											
+											}">
+												{% for f in produits_connexe %}
+												<div class="products-col">
+													
+													<div class="product product-list-sm">
+														
+														<figure class="product-media">
+															<a href="{% url 'core:details-produit' f.pk %}">
+																<img src="{{f.image.url}}" alt="product"
+																	width="40" height="90" >
+															</a>
+														</figure>
+														<div class="product-details">
+															<h3 class="product-name">
+																<a href="{% url 'core:details-produit' f.pk %}">{{f.designation}}</a>
+															</h3>
+															{% if f.prix_promo == null %}
+															<div class="product-price">
+																<span class="price">{{f.prix}} DA</span>
+															</div>
+															{% else %} 
+															<div class="product-price">
+																<span class="price" style="color: red; text-decoration: line-through;">{{f.prix}} DA</span>
+																<span class="price">{{f.prix_promo}} DA</span>
+															</div>
+															{% endif %}
+															<div class="ratings-container">
+																<div class="ratings-full">
+																	<span class="ratings" style="width:40%"></span>
+																	<span class="tooltiptext tooltip-top"></span>
+																</div>
+															</div>
+														</div>
+														
+													</div>
+													
+												</div>
+												{% endfor %}
+											</div>
+										</div>
+									</div>
+									<!-- FIN CELA POURAIT VOUS INTERESSER -->
+								
+								</div>
+							</div>
+						</aside>
+						<div class="col-lg-9">
+							<div class="product product-single row mb-4">
+								<!--IMAGES DU PRODUIT-->
+								<div class="col-md-6">
+									<div class="product-gallery">
+										<div
+											class="product-single-carousel owl-carousel owl-theme owl-nav-inner row cols-1">
+											<figure class="product-image">
+												<img src="{{produit.image.url}}"
+													data-zoom-image="{{produit.image.url}}"
+													alt="#" style="width: 800px; height: 500px;">
+											</figure>
+											<figure class="product-image">
+												<img src="{% static 'front/images/product/product-6-2-580x580.jpg' %}"
+													data-zoom-image="images/product/product-6-2-800x900.jpg"
+													alt="Women's Brown Leather Backpacks" width="500" height="500">
+											</figure>
+											<figure class="product-image">
+												<img src="{% static 'front/images/product/product-6-3-580x580.jpg' %}"
+													data-zoom-image="images/product/product-6-3-800x900.jpg"
+													alt="Women's Brown Leather Backpacks" width="500" height="500">
+											</figure>
+											<figure class="product-image">
+												<img src="{% static 'front/images/product/product-6-4-580x580.jpg' %}"
+													data-zoom-image="images/product/product-6-4-800x900.jpg"
+													alt="Women's Brown Leather Backpacks" width="500" height="500">
+											</figure>
+										</div>
+										<div class="product-thumbs-wrap">
+											<div class="product-thumbs" >
+												<div class="product-thumb active">
+													<img src="{{produit.image.url }}"
+														alt="product thumbnail" style="width: 109px; height: 135px;">
+												</div>
+												<div class="product-thumb">
+													<img src="{% static 'front/images/product/product-6-2-109x122.jpg' %}"
+														alt="product thumbnail" width="109" height="122">
+												</div>
+												<div class="product-thumb">
+													<img src="{% static 'front/images/product/product-6-3-109x122.jpg' %}"
+														alt="product thumbnail" width="109" height="122">
+												</div>
+												<div class="product-thumb">
+													<img src="{% static 'front/images/product/product-6-4-109x122.jpg' %}"
+														alt="product thumbnail" width="109" height="122">
+												</div>
+											</div>
+											<button class="thumb-up disabled"><i
+													class="fas fa-chevron-left"></i></button>
+											<button class="thumb-down disabled"><i
+													class="fas fa-chevron-right"></i></button>
+										</div>
+									</div>
+								</div>
+								<!--FIN IMAGES DU PRODUIT-->
+								<div class="col-md-6">
+									<div class="product-details">
+										<div class="product-navigation">
+											<ul class="breadcrumb breadcrumb-lg">
+												<li><a href="/"><i class="d-icon-home"></i></a></li>
+												<li><a href="{% url 'core:boutique-list' %}" class="active">Article</a></li>
+												<li>{{produit.designation}}</li>
+											</ul>
+											<!--NEXT AND PREVIOUS-->
+											<ul class="product-nav">
+												<li class="product-nav-prev">
+													<a href="{% url 'core:details-produit' prev.pk %}">
+														<i class="d-icon-arrow-left"></i> Préc.
+														<span class="product-nav-popup">															
+															<img src="{{prev.image.url}}"
+																alt="product thumbnail" width="110" height="123">
+															<span class="product-name">{{prev.designation}}</span>
+														</span>
+													</a>
+												</li>
+												<li class="product-nav-next">
+													<a href="{% url 'core:details-produit' next.pk %}">
+														Suiv. <i class="d-icon-arrow-right"></i>
+														<span class="product-nav-popup">
+															<img src="{{next.image.url}}"
+																alt="product thumbnail" width="110" height="123">
+															<span class="product-name">{{next.designation}}</span>
+														</span>
+													</a>
+												</li>
+											</ul>
+											<!-- END NEXT AND PREVIOUS-->
+										</div>
+										<h1 class="product-name">{{produit.designation}}</h1>
+										<div class="product-meta">
+											SKU: <span class="product-sku">{{produit.sku}}</span>
+											MARQUE: <span class="product-brand">{{produit.marque}}</span>
+										</div>
+										{% if produit.prix_promo != null %}
+										<div class="product-price">{{produit.prix_promo}} DA </div>
+										<div class="product-price" style="text-decoration: line-through; color: red;">{{produit.prix}} DA</div>
+										{% else %} 
+										<div class="product-price">{{produit.prix}} DA</div>
+										{% endif %}
+										<div class="ratings-container">
+											<div class="ratings-full">
+												<span class="ratings" style="width:60%"></span>
+												<span class="tooltiptext tooltip-top"></span>
+											</div>
+											<a href="#product-tab-reviews" class="link-to-tab rating-reviews">( 35
+												reviews )</a>
+										</div>
+										<p class="product-short-desc">{{produit.description}}</p>
+
+										<!--AFFICHAGE D'UNE COULEUR-->
+										{% if produit.couleurs.count == 0 %}
+										
+										{% else %}
+										<div class="product-form product-color">
+											<label>Couleurs: &nbsp;</label>
+											{% for couleur in produit.couleurs.all %}
+											<div class="product-variations">
+												<a style="background-color:{{couleur.code_couleur}}" name="{{couleurs.code}}"> </a>&nbsp;
+											</div>
+											{% endfor %}
+										</div>
+										{% endif %}
+										<!--FIN AFFICHAGE D'UNE COULEUR-->
+										
+										<!--AFFICHAGE DES TAILLES-->
+										{% if  produit.taille.count > 0 %}
+											<div class="product-form product-size">
+												<label>Taille:</label>
+												{% for taille in produit.taille.all %}
+													<div class="product-form-group">
+														<div class="product-variations">
+															<a class="size" href="#">{{taille.designation}}</a>
+														</div>
+													</div>
+												{% endfor %}
+											</div>									 	
+										{% else %}
+										   
+										{% endif %}
+										<!--FIN AFFICHAGE DES TAILLES-->
+																	
+										<hr class="product-divider">
+
+										<!--AJUSTEMENT DE LA QUANTITE-->
+										<div class="product-form product-qty">
+											<div class="product-form-group">
+												<div class="input-group mr-2">
+													<button class="quantity-minus d-icon-minus"></button>
+													<input class="quantity form-control" type="number" min="1"
+														max="1000000">
+													<button class="quantity-plus d-icon-plus"></button>
+												</div>
+												<a href="#" class="btn-product btn-cart text-normal ls-normal font-weight-semi-bold"><i class="d-icon-bag"></i>Ajouter au panier</a>
+											</div>
+										</div>
+										<!--FIN AFFICHAGE DE LA QUANTITE-->
+
+										<hr class="product-divider mb-3">
+
+										<div class="product-footer">
+											<div class="social-links mr-4">
+												<a href="https://www.facebook.com/20531316728/posts/10154009990506729/" class="social-link social-facebook fab fa-facebook-f"></a>
+												<a href="#" class="social-link social-twitter fab fa-twitter"></a>
+												<a href="#" class="social-link social-pinterest fab fa-pinterest-p"></a>
+											</div>
+											<div class="product-action">
+												<a href="#" class="btn-product btn-wishlist mr-6"><i
+														class="d-icon-heart"></i>Ajouter a la liste des envies</a>
+
+												<a href="#" class="btn-product btn-compare"><i
+														class="d-icon-compare"></i>Ajouter au comparateur</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="tab tab-nav-simple product-tabs">
+								<ul class="nav nav-tabs justify-content-center" role="tablist">
+									<li class="nav-item">
+										<a class="nav-link active" href="#product-tab-description">Description</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="#product-tab-additional">Informations supplémentaires</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="#product-tab-reviews">Commentaires</a>
+									</li>
+								</ul>
+								<div class="tab-content">
+									<div class="tab-pane active in" id="product-tab-description">
+										<div class="row mt-6">
+											<div class="col-md-6">
+												<h5 class="description-title mb-4 font-weight-semi-bold ls-m">Features
+												</h5>
+												{% if produit.longue_description == null %}
+													<p class="mb-2">Aucune informations n'a été renseigner.</p>
+												{% else %}
+												<p class="mb-2">
+													{{produit.longue_description}}
+												</p>
+												{% endif %}
+												
+												<h5 class="description-title mb-3 font-weight-semi-bold ls-m">
+													Spécifications</h5>
+												<table class="table">
+													<tbody>				
+														<tr>
+															<th class="font-weight-semi-bold text-dark pl-0">Matériel</th>
+															{% if produit.materiel.count > 0 %}
+																{% for prd in produit.materiel.all %}
+																	<td class="pl-4">{{prd.designation}}</td>
+																{% endfor %}
+															{% else %} 
+																<td class="pl-4">Aucune information disponible.</td>
+															{% endif %}
+														</tr>
+																			
+														<tr>
+															<th class="font-weight-semi-bold text-dark  pl-0">Fabricant</th>
+															{% if produit.fabricant.is_null %}
+															<td class="pl-4">Aucune information disponible.</td>
+															{% else %}
+															<td class="pl-4">{{produit.fabricant}} </td>
+															{% endif %}
+														</tr>
+													</tbody>
+												</table>
+											</div>
+											<div class="col-md-6 pl-md-6">
+												<h5 class="description-title font-weight-semi-bold ls-m mb-5">
+													Autres spécification</h5>
+												<div class="icon-box-wrap d-flex flex-wrap">
+													<div
+														class="icon-box icon-box-side icon-border pt-2 pb-2 mb-4 mr-10">
+														<div class="icon-box-icon">
+															<i class="d-icon-lock"></i>
+														</div>
+														<div class="icon-box-content">
+															<h4 class="icon-box-title lh-1 pt-1 ls-s text-normal">2 year
+																warranty</h4>
+															<p>Guarantee with no doubt</p>
+														</div>
+													</div>
+													<div class="icon-box icon-box-side icon-border pt-2 pb-2 mb-4">
+														<div class="icon-box-icon">
+															<i class="d-icon-truck"></i>
+														</div>
+														<div class="icon-box-content">
+															<h4 class="icon-box-title lh-1 pt-1 ls-s text-normal">Free
+																shippine
+															</h4>
+															<p>On orders over $50.00</p>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<!--INFORMATION SUPPLEMENTAIRE-->
+									<div class="tab-pane" id="product-tab-additional">
+										<ul class="list-none">
+											<li><label>Marque :</label>
+												<p>{{produit.marque}}</p>
+											</li>
+											<li><label>Couleur disponible : </label>
+												{% if produit.couleurs.count > 0 %}
+													{% for coul in produit.couleurs.all %}
+													<p>{{coul.designation}},</p>
+													{% endfor %}
+												{% else %}	
+													<p>Aucune couleur disponible pour cet article</p>
+												{% endif %}
+											</li>
+											<li><label>Taille :</label>
+												{% if produit.taille.count > 0 %}
+													{% for t in produit.taille.all %}						
+													<p>{{t.designation}},</p>
+													{% endfor %}
+												{% else %}
+													<p>Aucune information n'est disponible.</p>
+												{% endif %}
+											</li>
+										</ul>
+									</div>
+									<!--FIN INFORMATION SUPPLEMENTAIRE-->
+									
+									<!-- COMMENTAIRES SUR PRODUIT-->
+									<div class="tab-pane " id="product-tab-reviews">
+										<div class="comments mb-8 pt-2 pb-2 border-no">
+											<ul>
+												<li>
+													<div class="comment">
+														<figure class="comment-media">
+															<a href="#">
+																<img src="{% static 'front/images/blog/comments/1.jpg' %}" alt="avatar">
+															</a>
+														</figure>
+														<div class="comment-body">
+															<div class="comment-rating ratings-container mb-0">
+																<div class="ratings-full">
+																	<span class="ratings" style="width:80%"></span>
+																	<span class="tooltiptext tooltip-top">4.00</span>
+																</div>
+															</div>
+															<div class="comment-user">
+																<span class="comment-date text-body">September 22, 2020
+																	at 9:42 pm</span>
+																<h4><a href="#">John Doe</a></h4>
+															</div>
+
+															<div class="comment-content">
+																<p>Sed pretium, ligula sollicitudin laoreet viverra,
+																	tortor libero sodales leo,
+																	eget blandit nunc tortor eu nibh. Nullam mollis. Ut
+																	justo. Suspendisse potenti.
+																	Sed egestas, ante et vulputate volutpat, eros pede
+																	semper est, vitae luctus metus libero eu augue.</p>
+															</div>
+														</div>
+													</div>
+												</li>
+												<li>
+													<div class="comment">
+														<figure class="comment-media">
+															<a href="#">
+																<img src="images/blog/comments/2.jpg" alt="avatar">
+															</a>
+														</figure>
+
+														<div class="comment-body">
+															<div class="comment-rating ratings-container mb-0">
+																<div class="ratings-full">
+																	<span class="ratings" style="width:80%"></span>
+																	<span class="tooltiptext tooltip-top">4.00</span>
+																</div>
+															</div>
+															<div class="comment-user">
+																<span class="comment-date text-body">September 22, 2020
+																	at 9:42 pm</span>
+																<h4><a href="#">John Doe</a></h4>
+															</div>
+
+															<div class="comment-content">
+																<p>Sed pretium, ligula sollicitudin laoreet viverra,
+																	tortor
+																	libero sodales leo, eget blandit nunc tortor eu
+																	nibh. Nullam mollis.
+																	Ut justo. Suspendisse potenti. Sed egestas, ante et
+																	vulputate volutpat,
+																	eros pede semper est, vitae luctus metus libero eu
+																	augue. Morbi purus libero,
+																	faucibus adipiscing, commodo quis, avida id, est.
+																	Sed lectus. Praesent elementum
+																	hendrerit tortor. Sed semper lorem at felis.
+																	Vestibulum volutpat.</p>
+															</div>
+														</div>
+													</div>
+												</li>
+											</ul>
+										</div>
+										<!-- End Comments -->
+										<div class="reply">
+											<div class="title-wrapper text-left">
+												<h3 class="title title-simple text-left text-normal">Add a Review</h3>
+												<p>Your email address will not be published. Required fields are marked
+													*</p>
+											</div>
+											<div class="rating-form">
+												<label for="rating" class="text-dark">Your rating * </label>
+												<span class="rating-stars selected">
+													<a class="star-1" href="#">1</a>
+													<a class="star-2" href="#">2</a>
+													<a class="star-3" href="#">3</a>
+													<a class="star-4 active" href="#">4</a>
+													<a class="star-5" href="#">5</a>
+												</span>
+
+												<select name="rating" id="rating" required="" style="display: none;">
+													<option value="">Rate…</option>
+													<option value="5">Perfect</option>
+													<option value="4">Good</option>
+													<option value="3">Average</option>
+													<option value="2">Not that bad</option>
+													<option value="1">Very poor</option>
+												</select>
+											</div>
+											<form action="#">
+												<textarea id="reply-message" cols="30" rows="6"
+													class="form-control mb-4" placeholder="Comment *"
+													required></textarea>
+												<div class="row">
+													<div class="col-md-6 mb-5">
+														<input type="text" class="form-control" id="reply-name"
+															name="reply-name" placeholder="Name *" required />
+													</div>
+													<div class="col-md-6 mb-5">
+														<input type="email" class="form-control" id="reply-email"
+															name="reply-email" placeholder="Email *" required />
+													</div>
+												</div>
+												<div class="form-checkbox mb-4">
+													<input type="checkbox" class="custom-checkbox" id="signin-remember"
+														name="signin-remember" />
+													<label class="form-control-label" for="signin-remember">
+														Save my name, email, and website in this browser for the next
+														time I comment.
+													</label>
+												</div>
+												<button type="submit" class="btn btn-primary btn-rounded">Submit<i
+														class="d-icon-arrow-right"></i></button>
+											</form>
+										</div>
+										<!-- End Reply -->
+									</div>
+									<!--FIN COMMENTAIRE SUR PRODUIT-->
+
+								</div>
+							</div>
+
+							<!--RELATED PRODUCT-->
+							<section class="pt-3 mt-10">
+								<h2 class="title justify-content-center">Produits connexes</h2>
+
+								<div class="owl-carousel owl-theme owl-nav-full row cols-2 cols-md-3 cols-lg-4"
+									data-owl-options="{
+									'items': 5,
+									'nav': false,
+									'loop': false,
+									'dots': true,
+									'margin': 20,
+									'responsive': {
+										'0': {
+											'items': 2
+										},
+										'768': {
+											'items': 3
+										},
+										'992': {
+											'items': 4,
+											'dots': false,
+											'nav': true
+										}
+									}
+								}">
+								    {% for prc in produits_connexe %}
+										<div class="product shadow-media">
+										<figure class="product-media">
+											<a href="{% url 'core:details-produit' prc.pk %}">
+												<img src="{{prc.image.url}}" alt="product"  style="width: 280px; height: 250px;">
+											</a>
+											<div class="product-label-group">
+												<label class="product-label label-new">new</label>
+											</div>
+											<div class="product-action-vertical">
+												<a href="#" class="btn-product-icon btn-cart" data-toggle="modal"
+													data-target="#addCartModal" title="Add to cart"><i
+														class="d-icon-bag"></i></a>
+												<a href="#" class="btn-product-icon btn-wishlist"
+													title="Add to wishlist"><i class="d-icon-heart"></i></a>
+											</div>
+										</figure>
+										<div class="product-details">
+											<div class="product-cat">
+												{% for s in produit.categories.all %}
+												<a href="shop-grid-3col.html">{{s.desigantion}},</a>
+												{% endfor %}
+											</div>
+											<h3 class="product-name">
+												<a href="{% url 'core:details-produit' prc.pk %}">{{prc.designation}}</a>
+											</h3>
+											{% if prc.prix_promo == null %}
+											<div class="product-price">
+												<span class="price">{{prc.prix}} DA</span>
+											</div>
+											{% else %}
+											<div class="product-price">
+												<span class="price" style="text-decoration: line-through; color: red;">{{prc.prix}}</span>
+												<span class="price">{{prc.prix_promo}} DA</span>
+											</div>
+											{% endif %}
+											<div class="ratings-container">
+												<div class="ratings-full">
+													<span class="ratings" style="width:100%"></span>
+													<span class="tooltiptext tooltip-top"></span>
+												</div>
+												<a href="#" class="rating-reviews">( <span
+														class="review-count">12</span> reviews
+													)</a>
+											</div>
+										</div>
+									
+									
+										</div>
+									{% endfor %}
+								
+									</div>
+							</section>
+							<!--FIN RELATED PRODUCT-->
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+		<!-- End Main -->
+		<footer class="footer">
+			<div class="container">
+				<div class="footer-top">
+					<div class="row align-items-center">
+						<div class="col-lg-3">
+							<a href="demo1.html" class="logo-footer">
+								<img src="{% static 'front/images/logo-footer.png' %}" alt="logo-footer" width="154" height="43" />
+							</a>
+							<!-- End FooterLogo -->
+						</div>
+						<div class="col-lg-9">
+							<div class="widget widget-newsletter form-wrapper form-wrapper-inline">
+								<div class="newsletter-info mx-auto mr-lg-2 ml-lg-4">
+									<h4 class="widget-title">Subscribe to our Newsletter</h4>
+									<p>Get all the latest information, Sales and Offers.</p>
+								</div>
+								<form action="#" class="input-wrapper input-wrapper-inline">
+									<input type="email" class="form-control" name="email" id="email"
+										placeholder="Email address here..." required />
+									<button class="btn btn-primary btn-rounded btn-md ml-2" type="submit">subscribe<i
+											class="d-icon-arrow-right"></i></button>
+								</form>
+							</div>
+							<!-- End Newsletter -->
+						</div>
+					</div>
+				</div>
+				<!-- End FooterTop -->
+				<div class="footer-middle">
+					<div class="row justify-content-center" >
+						<div class="col-lg-3 col-md-6">
+							<div class="widget widget-info">
+								<h4 class="widget-title">Contact Info</h4>
+								<ul class="widget-body">
+									<li>
+										<label>Phone:</label>
+										<a href="tel:#">Toll Free (123) 456-7890</a>
+									</li>
+									<li>
+										<label>Email:</label>
+										<a href="mailto:mail@riode.com">mail@riode.com</a>
+									</li>
+									<li>
+										<label>Address:</label>
+										<a href="#">123 Street Name, City, England</a>
+									</li>
+									<li>
+										<label>WORKING DAYS / HOURS:</label>
+									</li>
+									<li>
+										<a href="#">Mon - Sun / 9:00 AM - 8:00 PM</a>
+									</li>
+								</ul>
+							</div>
+							<!-- End Widget -->
+						</div>
+						<div class="col-lg-3 col-md-6">
+							<div class="widget ml-lg-4">
+								<h4 class="widget-title">My Account</h4>
+								<ul class="widget-body">
+									<li>
+										<a href="about-us.html">About Us</a>
+									</li>
+									<li>
+										<a href="#">Order History</a>
+									</li>
+									<li>
+										<a href="#">Returns</a>
+									</li>
+									<li>
+										<a href="#">Custom Service</a>
+									</li>
+									<li>
+										<a href="#">Terms &amp; Condition</a>
+									</li>
+								</ul>
+							</div>
+							<!-- End Widget -->
+						</div>
+						<div class="col-lg-3 col-md-6">
+							<div class="widget ml-lg-4">
+								<h4 class="widget-title">Contact Info</h4>
+								<ul class="widget-body">
+									<li>
+										<a href="#">Sign in</a>
+									</li>
+									<li>
+										<a href="cart.html">View Cart</a>
+									</li>
+									<li>
+										<a href="wishlist.html">My Wishlist</a>
+									</li>
+									<li>
+										<a href="#">Track My Order</a>
+									</li>
+									<li>
+										<a href="#">Help</a>
+									</li>
+								</ul>
+							</div>
+							<!-- End Widget -->
+						</div>
+						
+					</div>
+				</div>
+				<!-- End FooterMiddle -->
+				<div class="footer-bottom">
+					<div class="footer-left">
+						<figure class="payment">
+							<img src="images/payment.png" alt="payment" width="159" height="29" />
+						</figure>
+					</div>
+					<div class="footer-center">
+						<p class="copyright">Riode eCommerce &copy; 2021. All Rights Reserved</p>
+					</div>
+					<div class="footer-right">
+						<div class="social-links">
+							<a href="#" class="social-link social-facebook fab fa-facebook-f"></a>
+							<a href="#" class="social-link social-twitter fab fa-twitter"></a>
+							<a href="#" class="social-link social-linkedin fab fa-linkedin-in"></a>
+						</div>
+					</div>
+				</div>
+				<!-- End FooterBottom -->
+			</div>
+		</footer>
+		<!-- End Footer -->
+	
+	<!-- Sticky Footer -->
+	<div class="sticky-footer sticky-content fix-bottom">
+		<a href="demo1.html" class="sticky-link active">
+			<i class="d-icon-home"></i>
+			<span>Home</span>
+		</a>
+		<a href="shop.html" class="sticky-link">
+			<i class="d-icon-volume"></i>
+			<span>Categories</span>
+		</a>
+		<a href="wishlist.html" class="sticky-link">
+			<i class="d-icon-heart"></i>
+			<span>Wishlist</span>
+		</a>
+		<a href="account.html" class="sticky-link">
+			<i class="d-icon-user"></i>
+			<span>Account</span>
+		</a>
+		<div class="header-search hs-toggle dir-up">
+			<a href="#" class="search-toggle sticky-link">
+				<i class="d-icon-search"></i>
+				<span>Search</span>
+			</a>
+			<form action="#" class="input-wrapper">
+				<input type="text" class="form-control" name="search" autocomplete="off"
+					placeholder="Search your keyword..." required />
+				<button class="btn btn-search" type="submit">
+					<i class="d-icon-search"></i>
+				</button>
+			</form>
+		</div>
+	</div>
+	<!-- Scroll Top -->
+	<a id="scroll-top" href="#top" title="Top" role="button" class="scroll-top"><i class="d-icon-arrow-up"></i></a>
+
+	
+
+	<!-- MobileMenu -->
+	<div class="mobile-menu-wrapper">
+		<div class="mobile-menu-overlay">
+		</div>
+		<!-- End Overlay -->
+		<a class="mobile-menu-close" href="#"><i class="d-icon-times"></i></a>
+		<!-- End CloseButton -->
+		<div class="mobile-menu-container scrollable">
+			<form action="#" class="input-wrapper">
+				<input type="text" class="form-control" name="search" autocomplete="off"
+					placeholder="Search your keyword..." required />
+				<button class="btn btn-search" type="submit">
+					<i class="d-icon-search"></i>
+				</button>
+			</form>
+			<!-- End Search Form -->
+			<ul class="mobile-menu mmenu-anim">
+				<li>
+					<a href="demo1.html">Home</a>
+				</li>
+				<li>
+					<a href="shop.html">Categories</a>
+					<ul>
+						<li>
+							<a href="#">
+								Variations 1
+							</a>
+							<ul>
+								<li><a href="shop-banner-sidebar.html">Banner With Sidebar</a></li>
+								<li><a href="shop-boxed-banner.html">Boxed Banner</a></li>
+								<li><a href="shop-infinite-scroll.html">Infinite Ajaxscroll</a></li>
+								<li><a href="shop-horizontal-filter.html">Horizontal Filter</a></li>
+								<li><a href="shop-navigation-filter.html">Navigation Filter<span
+											class="tip tip-hot">Hot</span></a></li>
+
+								<li><a href="shop-off-canvas.html">Off-Canvas Filter</a></li>
+								<li><a href="shop-right-sidebar.html">Right Toggle Sidebar</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="#">
+								Variations 2
+							</a>
+							<ul>
+
+								<li><a href="shop-grid-3cols.html">3 Columns Mode<span
+											class="tip tip-new">New</span></a></li>
+								<li><a href="shop-grid-4cols.html">4 Columns Mode</a></li>
+								<li><a href="shop-grid-5cols.html">5 Columns Mode</a></li>
+								<li><a href="shop-grid-6cols.html">6 Columns Mode</a></li>
+								<li><a href="shop-grid-7cols.html">7 Columns Mode</a></li>
+								<li><a href="shop-grid-8cols.html">8 Columns Mode</a></li>
+								<li><a href="shop-list.html">List Mode</a></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="#" class="active">Products</a>
+					<ul>
+						<li>
+							<a href="#">Product Pages</a>
+							<ul>
+								<li><a href="product-simple.html">Simple Product</a></li>
+								<li><a href="product.html">Variable Product</a></li>
+								<li><a href="product-sale.html">Sale Product</a></li>
+								<li><a href="product-featured.html">Featured &amp; On Sale</a></li>
+
+								<li><a href="product-left-sidebar.html">With Left Sidebar</a></li>
+								<li><a href="product-right-sidebar.html">With Right Sidebar</a></li>
+								<li><a href="product-sticky-cart.html">Add Cart Sticky<span
+											class="tip tip-hot">Hot</span></a></li>
+								<li><a href="product-tabinside.html">Tab Inside</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="#">Product Layouts</a>
+							<ul>
+								<li><a href="product-grid.html">Grid Images<span class="tip tip-new">New</span></a></li>
+								<li><a href="product-masonry.html">Masonry</a></li>
+								<li><a href="product-gallery.html">Gallery Type</a></li>
+								<li><a href="product-full.html">Full Width Layout</a></li>
+								<li><a href="product-sticky.html">Sticky Info</a></li>
+								<li><a href="product-sticky-both.html">Left &amp; Right Sticky</a></li>
+								<li><a href="product-horizontal.html">Horizontal Thumb</a></li>
+
+								<li><a href="#">Build Your Own</a></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="#">Pages</a>
+					<ul>
+						<li><a href="about-us.html">About</a></li>
+						<li><a href="contact-us.html">Contact Us</a></li>
+						<li><a href="account.html">Login</a></li>
+						<li><a href="faq.html">FAQs</a></li>
+						<li><a href="error-404.html">Error 404</a></li>
+						<li><a href="coming-soon.html">Coming Soon</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="blog-classic.html">Blog</a>
+					<ul>
+						<li><a href="blog-classic.html">Classic</a></li>
+						<li><a href="blog-listing.html">Listing</a></li>
+						<li>
+							<a href="#">Grid</a>
+							<ul>
+								<li><a href="blog-grid-2col.html">Grid 2 columns</a></li>
+								<li><a href="blog-grid-3col.html">Grid 3 columns</a></li>
+								<li><a href="blog-grid-4col.html">Grid 4 columns</a></li>
+								<li><a href="blog-grid-sidebar.html">Grid sidebar</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="#">Masonry</a>
+							<ul>
+								<li><a href="blog-masonry-2col.html">Masonry 2 columns</a></li>
+								<li><a href="blog-masonry-3col.html">Masonry 3 columns</a></li>
+								<li><a href="blog-masonry-4col.html">Masonry 4 columns</a></li>
+								<li><a href="blog-masonry-sidebar.html">Masonry sidebar</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="#">Mask</a>
+							<ul>
+								<li><a href="blog-mask-grid.html">Blog mask grid</a></li>
+								<li><a href="blog-mask-masonry.html">Blog mask masonry</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="post-single.html">Single Post</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="#">Elements</a>
+					<ul>
+						<li><a href="element-products.html">Products</a></li>
+						<li><a href="element-typography.html">Typography</a></li>
+						<li><a href="element-titles.html">Titles</a></li>
+						<li><a href="element-categories.html">Product Category</a></li>
+						<li><a href="element-buttons.html">Buttons</a></li>
+						<li><a href="element-accordions.html">Accordions</a></li>
+						<li><a href="element-alerts.html">Alert &amp; Notification</a></li>
+						<li><a href="element-tabs.html">Tabs</a></li>
+						<li><a href="element-testimonials.html">Testimonials</a></li>
+						<li><a href="element-blog-posts.html">Blog Posts</a></li>
+						<li><a href="element-instagrams.html">Instagrams</a></li>
+						<li><a href="element-cta.html">Call to Action</a></li>
+						<li><a href="element-icon-boxes.html">Icon Boxes</a></li>
+						<li><a href="element-icons.html">Icons</a></li>
+					</ul>
+				</li>
+				<li><a href="https://d-themes.com/buynow/riodehtml" target="_blank">Buy Riode!</a></li>
+			</ul>
+			<!-- End MobileMenu -->
+		</div>
+	</div>
+
+	
+{% endblock content %}

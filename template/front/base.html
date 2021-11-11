@@ -1,0 +1,54 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Riode - Ultimate eCommerce Template</title>
+
+    <meta name="keywords" content="HTML5 Template" />
+    <meta name="description" content="Riode - Ultimate eCommerce Template">
+    <meta name="author" content="D-THEMES">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{% static 'front/images/icons/favicon.png' %}">
+
+    <script>
+        WebFontConfig = {
+            google: { families: [ 'Poppins:300,400,500,600,700,800' ] }
+        };
+        ( function ( d ) {
+            var wf = d.createElement( 'script' ), s = d.scripts[ 0 ];
+            wf.src = "{% static 'front/js/webfont.js' %}";
+            wf.async = true;
+            s.parentNode.insertBefore( wf, s );
+        } )( document );
+    </script>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'front/vendor/fontawesome-free/css/all.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'front/vendor/animate/animate.min.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+    <!-- Plugins CSS File -->
+    <link rel="stylesheet" type="text/css" href="{% static 'front/vendor/magnific-popup/magnific-popup.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'front/vendor/owl-carousel/owl.carousel.min.css' %}">
+
+    <!-- Main CSS File -->
+    <link rel="stylesheet" type="text/css" href="{% static 'front/css/market1.min.css' %}">
+</head>
+
+<body class="home market">
+    
+    <div class="page-wrapper">
+        {% include 'front/header.html' %}
+        {% block content %}
+   
+
+        {% endblock content %}
+    </div>
+    
+    {% include 'front/scripts.html' %}
+</body>
+</html>
