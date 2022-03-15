@@ -1,0 +1,31 @@
+{% extends 'front/base.html' %} 
+{% load crispy_forms_tags %}
+{% block content %} 
+
+<section>
+    
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-8 col-xl-6">
+          <div class="row">
+            <div class="col text-center">
+              <h1>Inscription</h1>
+              <p class="text-h3">Inscivez pour pour un compte client, et profitez de nos articles toujours disponible pour vous.</p>
+            </div>
+          </div>
+          <form method="post" enctype="multipart/form-data" class="uni_form">
+              {% csrf_token %}
+                 
+                 {{form|crispy}}
+            <div class="row justify-content-start mt-4">
+                <div class="col">
+
+                <center><button class="btn btn-primary">Créer mon compte</button></center>
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock content %}

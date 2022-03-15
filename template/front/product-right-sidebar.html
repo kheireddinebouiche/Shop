@@ -279,7 +279,7 @@
 														max="1000000">
 													<button class="quantity-plus d-icon-plus"></button>
 												</div>
-												<a href="#" class="btn-product btn-cart text-normal ls-normal font-weight-semi-bold"><i class="d-icon-bag"></i>Ajouter au panier</a>
+												<a href="{% url 'core:ajouter-au-panier' produit.pk %}" class="btn-product text-normal ls-normal font-weight-semi-bold" style="width: 40%;"><i class="d-icon-bag mr-2"></i>Ajouter au panier</a>
 											</div>
 										</div>
 										<!--FIN AFFICHAGE DE LA QUANTITE-->
@@ -293,12 +293,10 @@
 												<a href="#" class="social-link social-pinterest fab fa-pinterest-p"></a>
 											</div>
 											<div class="product-action">
-												<a href="#" class="btn-product btn-wishlist mr-6"><i
-														class="d-icon-heart"></i>Ajouter a la liste des envies</a>
-
-												<a href="#" class="btn-product btn-compare"><i
-														class="d-icon-compare"></i>Ajouter au comparateur</a>
+												<a href="{% url 'core:ajouter-wishliste' produit.pk %}" class="mr-6"><i class="d-icon-heart mr-2"></i>Ajouter a la liste des envies</a>							
+												<a href="#" class="btn-product btn-compare"><i class="d-icon-compare"></i>Ajouter au comparateur</a>
 											</div>
+													
 										</div>
 									</div>
 								</div>
@@ -493,9 +491,8 @@
 										<!-- End Comments -->
 										<div class="reply">
 											<div class="title-wrapper text-left">
-												<h3 class="title title-simple text-left text-normal">Add a Review</h3>
-												<p>Your email address will not be published. Required fields are marked
-													*</p>
+												<h3 class="title title-simple text-left text-normal">Ajouter votre avis</h3>
+												<p>Votre adresse email ne sera pas publier *</p>
 											</div>
 											<div class="rating-form">
 												<label for="rating" class="text-dark">Your rating * </label>
@@ -518,7 +515,7 @@
 											</div>
 											<form action="#">
 												<textarea id="reply-message" cols="30" rows="6"
-													class="form-control mb-4" placeholder="Comment *"
+													class="form-control mb-4" placeholder="Votre commentaire *"
 													required></textarea>
 												<div class="row">
 													<div class="col-md-6 mb-5">
@@ -538,7 +535,7 @@
 														time I comment.
 													</label>
 												</div>
-												<button type="submit" class="btn btn-primary btn-rounded">Submit<i
+												<button type="submit" class="btn btn-primary btn-rounded">ENVOYER<i
 														class="d-icon-arrow-right"></i></button>
 											</form>
 										</div>
